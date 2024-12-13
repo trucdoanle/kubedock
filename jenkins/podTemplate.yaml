@@ -46,6 +46,54 @@ spec:
         name: "tmpdir"
       - mountPath: "/home/jenkins"
         name: "homedir"
+    - name: "kaniko"
+      image: gcr.io/kaniko-project/executor:debug
+      imagePullPolicy: Always
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
+        capabilities:
+          drop: [ALL]
+          add: [CHOWN, FOWNER, SETUID, SETGID, DAC_OVERRIDE]
+        allowPrivilegeEscalation: false
+        privileged: false
+      command:
+      - /busybox/cat
+      tty: true
+      resources:
+        requests:
+          memory: 8Gi
+          cpu: 200m
+        limits:
+          memory: 16Gi
+      volumeMounts:
+      - name: "tmpdir"
+        mountPath: /tmp
+      - mountPath: "/home/jenkins"
+        name: "homedir"
+    - name: go
+      image: us-east4-docker.pkg.dev/sym-prod-mr-tools-01/jenkins-docker-us-east4/go:1.19
+      imagePullPolicy: IfNotPresent
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
+        runAsUser: 1000
+        allowPrivilegeEscalation: false
+        readOnlyRootFilesystem: True
+        privileged: false
+      resources:
+        requests:
+          memory: 1Gi
+          cpu: 200m
+        limits:
+          memory: 2Gi
+      command: [sleep]
+      args: [99d]
+      volumeMounts:
+        - mountPath: "/tmp"
+          name: "tmpdir"
+        - mountPath: "/home/jenkins"
+          name: "homedir"
   restartPolicy: Never
   volumes:
   - emptyDir:

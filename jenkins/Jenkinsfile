@@ -1,0 +1,67 @@
+@Library(['sym-pipeline@main']) _
+
+import com.symphony.cicd.SymphonyCICDUtils
+
+def cicdUtils = new SymphonyCICDUtils()
+def isPullRequest = cicdUtils.isPullRequest()
+
+String projectOrg = "SymphonyOSF"
+String projectRepo = "kubedock"
+
+podTemplate(
+  cloud: "kubernetes-build-cicd-jenkins-agent",
+  yaml: readTrusted('jenkins/podTemplate.yaml'),
+  yamlMergeStrategy: merge()
+) {
+
+node(POD_LABEL) {
+  properties([disableConcurrentBuilds(abortPrevious: true)])
+
+  stage("setup"){
+    sh "env | sort"
+  }
+
+  stage("checkout") {        
+    gitHash = gitCheckout()
+    version = "${BRANCH_NAME}.${BUILD_ID}.${gitHash}".toLowerCase()
+    addArtifactLinkToDescription("${projectRepo}:${version}", "https://console.cloud.google.com/artifacts/generic/sym-prod-mr-tools-01/us-east4/sym-generic/${projectRepo}/${version}")
+  }
+
+  stage("build") {
+    container("ubuntu") {
+      withCredentials([
+              usernamePassword(credentialsId: 'repo-symphony', usernameVariable: 'ARTIFACTORY_USER', passwordVariable: 'ARTIFACTORY_TOKEN')
+      ]) {
+        sh """
+          export "GOPROXY=https://\${ARTIFACTORY_USER}:\${ARTIFACTORY_TOKEN}@repo.symphony.com/artifactory/api/go/go-virtual-mirror"
+          mv packaging/debian ./
+          echo 1.0 > debian/source/format
+          sed -i 's/golang-go/golang-1.23-go/g' debian/control
+          sed -i '/GOPROXY/d' debian/rules
+          dpkg-buildpackage -us -uc -rfakeroot || true
+        """
+      }
+    }
+  }
+
+  stage("publish") {
+    sh """
+      gcloud artifacts generic upload \
+        --project=sym-prod-mr-tools-01 \
+        --source="../apt-transport-artifact-registry_20210304.00-g1_amd64.deb" \
+        --package=${projectRepo} \
+        --version=${version} \
+        --location=us-east4 \
+        --repository=sym-generic
+    """
+  }
+}}
+
+def addArtifactLinkToDescription(name, url) {
+  String artifactLink = "<a href='${url}'>${name}</a><br>"
+  if (currentBuild.description) {
+    currentBuild.description = currentBuild.description + artifactLink
+  } else {
+    currentBuild.description = artifactLink
+  }
+}
