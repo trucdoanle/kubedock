@@ -1,0 +1,63 @@
+@Library(['sym-pipeline@main']) _
+
+import com.symphony.cicd.deploy.K8sUtils
+import com.symphony.cicd.SymphonyCICDUtils
+
+def k8sUtils = new K8sUtils()
+def cicdUtils = new SymphonyCICDUtils()
+def isPullRequest = cicdUtils.isPullRequest()
+
+String projectOrg = "SymphonyOSF"
+String projectRepo = "kubedock"
+String containerRepository = "us-east4-docker.pkg.dev/sym-prod-mr-tools-01/jenkins-docker-us-east4"
+
+podTemplate(
+  cloud: "kubernetes-build-cicd-jenkins-agent",
+  yaml: readTrusted('jenkins/podTemplate.yaml'),
+  yamlMergeStrategy: merge()
+) {
+
+node(POD_LABEL) {
+  properties([disableConcurrentBuilds(abortPrevious: true)])
+
+  stage('setup-check') {
+    echo sh(script: 'env|sort', returnStdout: true)
+    sh "gcloud auth configure-docker us-east4-docker.pkg.dev"
+  }
+
+
+  stage("checkout") {
+    gitHash = gitCheckout()
+    echo "Git hash: ${gitHash}"
+
+    shortGitHash = cicdUtils.getShortGitHash()
+    now = getDate()
+    imageTag = "${BRANCH_NAME}-${BUILD_NUMBER}-${now}-${shortGitHash}"
+    echo "imageTag: ${imageTag}"
+
+  }
+
+
+  stage("build and push docker image") {
+    container("ubuntu") {
+
+      withCredentials([
+        usernamePassword(credentialsId: 'repo-symphony', usernameVariable: 'ARTIFACTORY_USER', passwordVariable: 'ARTIFACTORY_TOKEN')
+      ]) {
+        sh """
+          export "GOPROXY=https://\${ARTIFACTORY_USER}:\${ARTIFACTORY_TOKEN}@repo.symphony.com/artifactory/api/go/go-virtual-mirror"
+          mv packaging/debian ./
+          echo 1.0 > debian/source/format
+          sed -i 's/golang-go/golang-1.23-go/g' debian/control
+          sed -i '/GOPROXY/d' debian/rules
+          go build -o kubedock
+        """
+      
+        def argMap = []
+        String targetImageName = "${containerRepository}/kubedock:${imageTag}"
+        k8sUtils.kanikoBuild(targetImageName, '`pwd`/Dockerfile', '`pwd`', 'kaniko', argMap, "--cache=false --cleanup && mkdir -p /workspace")
+      }
+    }
+  }
+}
+}

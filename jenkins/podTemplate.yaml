@@ -1,0 +1,82 @@
+spec:
+  containers:
+  - name: "jnlp"
+    securityContext:
+      seccompProfile:
+        type: RuntimeDefault
+      runAsUser: 1000
+      allowPrivilegeEscalation: false
+      readOnlyRootFilesystem: True
+      privileged: false
+    image: "us-east4-docker.pkg.dev/sym-prod-mr-tools-01/jenkins-docker-us-east4/jnlp:jdk17.Production-142-c8ed43e"
+    resources:
+      requests:
+        memory: "1Gi"
+        cpu: "0.5"
+      limits:
+        memory: "1Gi"
+    volumeMounts:
+      - mountPath: "/tmp"
+        name: "tmpdir"
+      - mountPath: "/home/jenkins"
+        name: "homedir"
+  - name: "ubuntu"
+    image: "us-east4-docker.pkg.dev/sym-prod-mr-tools-01/jenkins-docker-us-east4/ubuntu:noble.Production-146-8cc6c3f"
+    imagePullPolicy: Always
+    securityContext:
+      seccompProfile:
+        type: RuntimeDefault
+      runAsUser: 1000
+      allowPrivilegeEscalation: false
+      readOnlyRootFilesystem: True
+      privileged: false
+    resources:
+      requests:
+        memory: 2Gi
+        cpu: 1
+      limits:
+        memory: 4Gi
+    command: [sleep]
+    args: [99d]
+    envFrom:
+      - configMapRef:
+          name: env
+    volumeMounts:
+      - mountPath: "/tmp"
+        name: "tmpdir"
+      - mountPath: "/home/jenkins"
+        name: "homedir"
+    - name: "kaniko"
+      image: gcr.io/kaniko-project/executor:debug
+      imagePullPolicy: Always
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
+        capabilities:
+          drop: [ALL]
+          add: [CHOWN, FOWNER, SETUID, SETGID, DAC_OVERRIDE]
+        allowPrivilegeEscalation: false
+        privileged: false
+      command:
+      - /busybox/cat
+      tty: true
+      resources:
+        requests:
+          memory: 8Gi
+          cpu: 200m
+        limits:
+          memory: 16Gi
+      volumeMounts:
+      - name: "tmpdir"
+        mountPath: /tmp
+      - mountPath: "/home/jenkins"
+        name: "homedir"
+  restartPolicy: Never
+  volumes:
+  - emptyDir:
+      medium: ""
+    name: "tmpdir"
+  - emptyDir:
+      medium: ""
+    name: "homedir"
+  serviceAccountName: build-cicd
