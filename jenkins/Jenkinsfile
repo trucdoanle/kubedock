@@ -7,6 +7,7 @@ def isPullRequest = cicdUtils.isPullRequest()
 
 String projectOrg = "SymphonyOSF"
 String projectRepo = "kubedock"
+String containerRepository = "us-east4-docker.pkg.dev/sym-prod-mr-tools-01/kubedock-docker-us-east4"
 
 podTemplate(
   cloud: "kubernetes-build-cicd-jenkins-agent",
@@ -17,14 +18,41 @@ podTemplate(
 node(POD_LABEL) {
   properties([disableConcurrentBuilds(abortPrevious: true)])
 
-  stage("setup"){
-    sh "env | sort"
+  stage('Setup Check') {
+    echo sh(script: 'env|sort', returnStdout: true)
+    sh "gcloud auth configure-docker us-east4-docker.pkg.dev"
   }
 
   stage("checkout") {        
     gitHash = gitCheckout()
     version = "${BRANCH_NAME}.${BUILD_ID}.${gitHash}".toLowerCase()
     addArtifactLinkToDescription("${projectRepo}:${version}", "https://console.cloud.google.com/artifacts/generic/sym-prod-mr-tools-01/us-east4/sym-generic/${projectRepo}/${version}")
+  }
+
+  stage("Checkout") {
+    prGitHash = gitCheckout()
+    echo "PR Git hash: ${prGitHash}"
+
+    shortGitHash = cicdUtils.getShortGitHash()
+    semantic_version = getCurrentPomProperty("revision")
+    now = getDate()
+    branch = BRANCH_NAME.replaceAll(/[\.-]/, "_")
+
+    imageTag = "${semantic_version}-${BUILD_NUMBER}-${branch}-${now}-${shortGitHash}"
+    if (isPullRequest) {
+      withCredentials([usernamePassword(credentialsId: 'symphonyjenkinsauto-sbe', usernameVariable: 'USERNAME', passwordVariable: 'GH_TOKEN')]) {
+        def comment = "ImagesTag: ${imageTag}"
+
+        sh """
+        curl -H "Authorization: token $GH_TOKEN" \
+              -H "Accept: application/vnd.github.v3+json" \
+              https://api.github.com/repos/${projectOrg}/${projectRepo}/issues/${env.CHANGE_ID}/comments \
+              -d '{\"body\": \"$comment\"}'
+        """
+      }
+    }
+    parallel "ImagesTag: ${imageTag}": {}
+    currentBuild.description = "<strong>${imageTag}</strong><br>"
   }
 
   stage("build") {
