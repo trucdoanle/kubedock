@@ -6,7 +6,7 @@ import (
 
 	"k8s.io/klog"
 
-	"github.com/joyrex2001/kubedock/internal/util/stringid"
+	"github.com/SymphonyOSF/kubedock/internal/util/stringid"
 )
 
 // Events is the interface to publish and consume events.

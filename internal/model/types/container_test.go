@@ -73,98 +73,98 @@ func TestGetResourceRequirements(t *testing.T) {
 		},
 		{ // 1
 			in: &Container{Labels: map[string]string{
-				"com.joyrex2001.kubedock.request-cpu": "500m",
+				"com.SymphonyOSF.kubedock.request-cpu": "500m",
 			}},
 			reqlim: map[string]string{"reqcpu": "500m"},
 			err:    false,
 		},
 		{ // 2
 			in: &Container{Labels: map[string]string{
-				"com.joyrex2001.kubedock.request-cpu": "500m,2000m",
+				"com.SymphonyOSF.kubedock.request-cpu": "500m,2000m",
 			}},
 			reqlim: map[string]string{"reqcpu": "500m", "limcpu": "2"},
 			err:    false,
 		},
 		{ // 3
 			in: &Container{Labels: map[string]string{
-				"com.joyrex2001.kubedock.request-cpu": ",2000m",
+				"com.SymphonyOSF.kubedock.request-cpu": ",2000m",
 			}},
 			reqlim: map[string]string{"reqcpu": "2", "limcpu": "2"},
 			err:    false,
 		},
 		{ // 4
 			in: &Container{Labels: map[string]string{
-				"com.joyrex2001.kubedock.request-cpu": "joyrex",
+				"com.SymphonyOSF.kubedock.request-cpu": "joyrex",
 			}},
 			reqlim: map[string]string{},
 			err:    true,
 		},
 		{ // 5
 			in: &Container{Labels: map[string]string{
-				"com.joyrex2001.kubedock.request-memory": "500Mi",
+				"com.SymphonyOSF.kubedock.request-memory": "500Mi",
 			}},
 			reqlim: map[string]string{"reqmem": "500Mi"},
 			err:    false,
 		},
 		{ // 6
 			in: &Container{Labels: map[string]string{
-				"com.joyrex2001.kubedock.request-memory": "500Mi,2000Mi",
+				"com.SymphonyOSF.kubedock.request-memory": "500Mi,2000Mi",
 			}},
 			reqlim: map[string]string{"reqmem": "500Mi", "limmem": "2000Mi"},
 			err:    false,
 		},
 		{ // 7
 			in: &Container{Labels: map[string]string{
-				"com.joyrex2001.kubedock.request-memory": ",2000Mi",
+				"com.SymphonyOSF.kubedock.request-memory": ",2000Mi",
 			}},
 			reqlim: map[string]string{"reqmem": "2000Mi", "limmem": "2000Mi"},
 			err:    false,
 		},
 		{ // 8
 			in: &Container{Labels: map[string]string{
-				"com.joyrex2001.kubedock.request-memory": "joyrex",
+				"com.SymphonyOSF.kubedock.request-memory": "joyrex",
 			}},
 			reqlim: map[string]string{},
 			err:    true,
 		},
 		{ // 9
 			in: &Container{Labels: map[string]string{
-				"com.joyrex2001.kubedock.request-memory": "500Mi,2000Mi,2500Mi",
+				"com.SymphonyOSF.kubedock.request-memory": "500Mi,2000Mi,2500Mi",
 			}},
 			reqlim: map[string]string{},
 			err:    true,
 		},
 		{ // 10
 			in: &Container{Labels: map[string]string{
-				"com.joyrex2001.kubedock.request-memory": "500Mi,joyrex",
+				"com.SymphonyOSF.kubedock.request-memory": "500Mi,joyrex",
 			}},
 			reqlim: map[string]string{},
 			err:    true,
 		},
 		{ // 11
 			in: &Container{Labels: map[string]string{
-				"com.joyrex2001.kubedock.request-memory": " , 2000Mi",
+				"com.SymphonyOSF.kubedock.request-memory": " , 2000Mi",
 			}},
 			reqlim: map[string]string{"reqmem": "2000Mi", "limmem": "2000Mi"},
 			err:    false,
 		},
 		{ // 12
 			in: &Container{Labels: map[string]string{
-				"com.joyrex2001.kubedock.request-cpu": ",1000000000n",
+				"com.SymphonyOSF.kubedock.request-cpu": ",1000000000n",
 			}},
 			reqlim: map[string]string{"reqcpu": "1", "limcpu": "1"},
 			err:    false,
 		},
 		{ // 13
 			in: &Container{Labels: map[string]string{
-				"com.joyrex2001.kubedock.request-memory": "209715200",
+				"com.SymphonyOSF.kubedock.request-memory": "209715200",
 			}},
 			reqlim: map[string]string{"reqmem": "209715200"},
 			err:    false,
 		},
 		{ // 14
 			in: &Container{Labels: map[string]string{
-				"com.joyrex2001.kubedock.request-memory": "209715200",
+				"com.SymphonyOSF.kubedock.request-memory": "209715200",
 			}},
 			reqlim: map[string]string{"reqmem": "209715200", "limmem": mem64.String()},
 			resources: corev1.ResourceRequirements{
@@ -176,7 +176,7 @@ func TestGetResourceRequirements(t *testing.T) {
 		},
 		{ // 15
 			in: &Container{Labels: map[string]string{
-				"com.joyrex2001.kubedock.request-memory": "209715200",
+				"com.SymphonyOSF.kubedock.request-memory": "209715200",
 			}},
 			reqlim: map[string]string{"reqmem": "209715200"},
 			resources: corev1.ResourceRequirements{
@@ -231,7 +231,7 @@ func TestGetNodeSelector(t *testing.T) {
 		},
 		{ // 1
 			in: &Container{Labels: map[string]string{
-				"com.joyrex2001.kubedock.node-selector": "a=b",
+				"com.SymphonyOSF.kubedock.node-selector": "a=b",
 			}},
 			inNodeSel:  map[string]string{},
 			outNodeSel: map[string]string{"a": "b"},
@@ -239,7 +239,7 @@ func TestGetNodeSelector(t *testing.T) {
 		},
 		{ // 2
 			in: &Container{Labels: map[string]string{
-				"com.joyrex2001.kubedock.node-selector": "a=b,c=d",
+				"com.SymphonyOSF.kubedock.node-selector": "a=b,c=d",
 			}},
 			inNodeSel:  map[string]string{},
 			outNodeSel: map[string]string{"a": "b", "c": "d"},
@@ -253,7 +253,7 @@ func TestGetNodeSelector(t *testing.T) {
 		},
 		{ // 4
 			in: &Container{Labels: map[string]string{
-				"com.joyrex2001.kubedock.node-selector": "a=b",
+				"com.SymphonyOSF.kubedock.node-selector": "a=b",
 			}},
 			inNodeSel:  map[string]string{"z": "y"},
 			outNodeSel: map[string]string{"a": "b", "z": "y"},
@@ -261,7 +261,7 @@ func TestGetNodeSelector(t *testing.T) {
 		},
 		{ // 5
 			in: &Container{Labels: map[string]string{
-				"com.joyrex2001.kubedock.node-selector": "format-error",
+				"com.SymphonyOSF.kubedock.node-selector": "format-error",
 			}},
 			inNodeSel:  map[string]string{},
 			outNodeSel: map[string]string{},
@@ -269,7 +269,7 @@ func TestGetNodeSelector(t *testing.T) {
 		},
 		{ // 6
 			in: &Container{Labels: map[string]string{
-				"com.joyrex2001.kubedock.node-selector": "a=b",
+				"com.SymphonyOSF.kubedock.node-selector": "a=b",
 			}},
 			inNodeSel:  nil,
 			outNodeSel: map[string]string{"a": "b"},
@@ -303,14 +303,14 @@ func TestGetImagePullPolicy(t *testing.T) {
 		},
 		{ // 1
 			in: &Container{Labels: map[string]string{
-				"com.joyrex2001.kubedock.pull-policy": "always",
+				"com.SymphonyOSF.kubedock.pull-policy": "always",
 			}},
 			policy: corev1.PullAlways,
 			err:    false,
 		},
 		{ // 2
 			in: &Container{Labels: map[string]string{
-				"com.joyrex2001.kubedock.pull-policy": "something",
+				"com.SymphonyOSF.kubedock.pull-policy": "something",
 			}},
 			policy: corev1.PullIfNotPresent,
 			err:    true,
@@ -342,13 +342,13 @@ func TestGetServiceAccountName(t *testing.T) {
 		},
 		{ // 1
 			in: &Container{Labels: map[string]string{
-				"com.joyrex2001.kubedock.service-account": "default",
+				"com.SymphonyOSF.kubedock.service-account": "default",
 			}},
 			outsa: "default",
 		},
 		{ // 2
 			in: &Container{Labels: map[string]string{
-				"com.joyrex2001.kubedock.service-account": "jtkirk",
+				"com.SymphonyOSF.kubedock.service-account": "jtkirk",
 			}},
 			outsa: "jtkirk",
 		},
@@ -377,37 +377,37 @@ func TestGetPodName(t *testing.T) {
 		},
 		{ // 1
 			in: &Container{ShortID: "1234", Name: "", Labels: map[string]string{
-				"com.joyrex2001.kubedock.name-prefix": "space",
+				"com.SymphonyOSF.kubedock.name-prefix": "space",
 			}},
 			name: "space-1234",
 		},
 		{ // 2
 			in: &Container{ShortID: "1234", Name: "", Labels: map[string]string{
-				"com.joyrex2001.kubedock.name-prefix": "s.pace",
+				"com.SymphonyOSF.kubedock.name-prefix": "s.pace",
 			}},
 			name: "space-1234",
 		},
 		{ // 3
 			in: &Container{ShortID: "1234", Name: "exploration", Labels: map[string]string{
-				"com.joyrex2001.kubedock.name-prefix": "s.pace",
+				"com.SymphonyOSF.kubedock.name-prefix": "s.pace",
 			}},
 			name: "space-exploration-1234",
 		},
 		{ // 4
 			in: &Container{ShortID: "1234", Name: "exploration/909", Labels: map[string]string{
-				"com.joyrex2001.kubedock.name-prefix": "s.pace",
+				"com.SymphonyOSF.kubedock.name-prefix": "s.pace",
 			}},
 			name: "space-exploration909-1234",
 		},
 		{ // 5
 			in: &Container{ShortID: "1234", Name: "exploration_909", Labels: map[string]string{
-				"com.joyrex2001.kubedock.name-prefix": "s_pace",
+				"com.SymphonyOSF.kubedock.name-prefix": "s_pace",
 			}},
 			name: "s-pace-exploration-909-1234",
 		},
 		{ // 6
 			in: &Container{ShortID: "1234", Name: "MyContainer", Labels: map[string]string{
-				"com.joyrex2001.kubedock.name-prefix": "space",
+				"com.SymphonyOSF.kubedock.name-prefix": "space",
 			}},
 			name: "space-mycontainer-1234",
 		},
@@ -429,35 +429,35 @@ func TestGetRunasUser(t *testing.T) {
 	}{
 		{ // 0
 			in: &Container{Labels: map[string]string{
-				"com.joyrex2001.kubedock.runas-user": "",
+				"com.SymphonyOSF.kubedock.runas-user": "",
 			}},
 			outsc: corev1.PodSecurityContext{},
 			err:   false,
 		},
 		{ // 1
 			in: &Container{Labels: map[string]string{
-				"com.joyrex2001.kubedock.runas-user": "1000",
+				"com.SymphonyOSF.kubedock.runas-user": "1000",
 			}},
 			outsc: corev1.PodSecurityContext{RunAsUser: makeIntPointer(1000)},
 			err:   false,
 		},
 		{ // 2
 			in: &Container{Labels: map[string]string{
-				"com.joyrex2001.kubedock.runas-user": "0",
+				"com.SymphonyOSF.kubedock.runas-user": "0",
 			}},
 			outsc: corev1.PodSecurityContext{RunAsUser: makeIntPointer(0)},
 			err:   false,
 		},
 		{ // 3
 			in: &Container{Labels: map[string]string{
-				"com.joyrex2001.kubedock.runas-user": "9999999999999999999999999999999",
+				"com.SymphonyOSF.kubedock.runas-user": "9999999999999999999999999999999",
 			}},
 			outsc: corev1.PodSecurityContext{},
 			err:   true,
 		},
 		{ // 4
 			in: &Container{Labels: map[string]string{
-				"com.joyrex2001.kubedock.runas-user": "abc",
+				"com.SymphonyOSF.kubedock.runas-user": "abc",
 			}},
 			outsc: corev1.PodSecurityContext{},
 			err:   true,
@@ -469,7 +469,7 @@ func TestGetRunasUser(t *testing.T) {
 		},
 		{ // 6
 			in: &Container{Labels: map[string]string{
-				"com.joyrex2001.kubedock.runas-user": "",
+				"com.SymphonyOSF.kubedock.runas-user": "",
 			}},
 			insc:  &corev1.PodSecurityContext{RunAsUser: makeIntPointer(1000)},
 			outsc: corev1.PodSecurityContext{RunAsUser: makeIntPointer(1000)},
@@ -477,7 +477,7 @@ func TestGetRunasUser(t *testing.T) {
 		},
 		{ // 7
 			in: &Container{Labels: map[string]string{
-				"com.joyrex2001.kubedock.runas-user": "1000",
+				"com.SymphonyOSF.kubedock.runas-user": "1000",
 			}},
 			insc:  &corev1.PodSecurityContext{RunAsUser: makeIntPointer(500)},
 			outsc: corev1.PodSecurityContext{RunAsUser: makeIntPointer(1000)},
@@ -880,14 +880,14 @@ func TestGetActiveDeadlineSeconds(t *testing.T) {
 		},
 		{ // 1
 			in: &Container{Labels: map[string]string{
-				"com.joyrex2001.kubedock.active-deadline-seconds": "42",
+				"com.SymphonyOSF.kubedock.active-deadline-seconds": "42",
 			}},
 			deadline: makeIntPointer(42),
 			err:      false,
 		},
 		{ // 2
 			in: &Container{Labels: map[string]string{
-				"com.joyrex2001.kubedock.active-deadline-seconds": "foo",
+				"com.SymphonyOSF.kubedock.active-deadline-seconds": "foo",
 			}},
 			deadline: nil,
 			err:      true,

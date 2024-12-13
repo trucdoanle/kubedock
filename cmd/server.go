@@ -12,8 +12,8 @@ import (
 	"k8s.io/client-go/tools/clientcmd"
 	"k8s.io/klog"
 
-	"github.com/joyrex2001/kubedock/internal"
-	"github.com/joyrex2001/kubedock/internal/config"
+	"github.com/SymphonyOSF/kubedock/internal"
+	"github.com/SymphonyOSF/kubedock/internal/config"
 )
 
 var cfgFile string

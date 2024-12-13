@@ -6,7 +6,7 @@ import (
 	"os"
 	"regexp"
 
-	"github.com/joyrex2001/kubedock/internal/model/types"
+	"github.com/SymphonyOSF/kubedock/internal/model/types"
 )
 
 // toKubernetesValue will create a nice kubernetes string that can be used as a

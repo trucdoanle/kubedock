@@ -8,8 +8,8 @@ import (
 	v1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	"github.com/joyrex2001/kubedock/internal/model/types"
-	"github.com/joyrex2001/kubedock/internal/util/ioproxy"
+	"github.com/SymphonyOSF/kubedock/internal/model/types"
+	"github.com/SymphonyOSF/kubedock/internal/util/ioproxy"
 )
 
 // LogOptions describe the supported log options

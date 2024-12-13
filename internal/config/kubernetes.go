@@ -8,7 +8,7 @@ import (
 	// enable auth plugins
 	_ "k8s.io/client-go/plugin/pkg/client/auth"
 
-	"github.com/joyrex2001/kubedock/internal/util/stringid"
+	"github.com/SymphonyOSF/kubedock/internal/util/stringid"
 )
 
 // SystemLabels are the labels that are added to every kubedock

@@ -11,7 +11,7 @@ Start a pipelinerun via cmd:
 
 ```bash
 tkn pipeline start kubedock-example
-        -p git-url=https://github.com/joyrex2001/kubedock.git \
+        -p git-url=https://github.com/SymphonyOSF/kubedock.git \
         -p context-dir=examples/testcontainers-java \
         -p git-revision=master
 ```

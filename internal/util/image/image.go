@@ -11,7 +11,7 @@ import (
 )
 
 // InspectConfig will return an Image object with the configuration
-// of the specified image. (docker://docker.io/joyrex2001/kubedock:latest)
+// of the specified image. (docker://docker.io/SymphonyOSF/kubedock:latest)
 func InspectConfig(name string) (*v1.Image, error) {
 	sys := &types.SystemContext{
 		OSChoice: "linux",

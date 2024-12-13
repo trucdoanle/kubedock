@@ -1,4 +1,4 @@
-package com.joyrex2001.kubedock.examples.testcontainers;
+package com.SymphonyOSF.kubedock.examples.testcontainers;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-module github.com/joyrex2001/kubedock
+module github.com/SymphonyOSF/kubedock
 
 go 1.22.6
 

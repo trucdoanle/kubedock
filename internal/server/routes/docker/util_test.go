@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/joyrex2001/kubedock/internal/model/types"
+	"github.com/SymphonyOSF/kubedock/internal/model/types"
 )
 
 func TestAddNetworkAliases(t *testing.T) {

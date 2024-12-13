@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/joyrex2001/kubedock/internal/model/types"
+	"github.com/SymphonyOSF/kubedock/internal/model/types"
 )
 
 func TestCleanExecs(t *testing.T) {

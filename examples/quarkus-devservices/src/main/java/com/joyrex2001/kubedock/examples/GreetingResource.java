@@ -1,4 +1,4 @@
-package com.joyrex2001.kubedock.examples;
+package com.SymphonyOSF.kubedock.examples;
 
 import io.quarkus.security.Authenticated;
 

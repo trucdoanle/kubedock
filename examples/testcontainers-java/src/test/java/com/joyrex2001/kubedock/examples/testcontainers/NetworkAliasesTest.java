@@ -1,4 +1,4 @@
-package com.joyrex2001.kubedock.examples.testcontainers;
+package com.SymphonyOSF.kubedock.examples.testcontainers;
 
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.GenericContainer;

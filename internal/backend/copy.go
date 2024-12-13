@@ -12,8 +12,8 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/klog"
 
-	"github.com/joyrex2001/kubedock/internal/model/types"
-	"github.com/joyrex2001/kubedock/internal/util/exec"
+	"github.com/SymphonyOSF/kubedock/internal/model/types"
+	"github.com/SymphonyOSF/kubedock/internal/util/exec"
 )
 
 // CopyToContainer will copy given (tar) archive to given path of the container.

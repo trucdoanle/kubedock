@@ -5,8 +5,8 @@ import (
 
 	"k8s.io/klog"
 
-	"github.com/joyrex2001/kubedock/internal/backend"
-	"github.com/joyrex2001/kubedock/internal/model/types"
+	"github.com/SymphonyOSF/kubedock/internal/backend"
+	"github.com/SymphonyOSF/kubedock/internal/model/types"
 )
 
 // StartContainer will start given container and saves the appropriate state

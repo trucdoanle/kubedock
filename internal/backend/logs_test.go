@@ -6,7 +6,7 @@ import (
 
 	"k8s.io/client-go/kubernetes/fake"
 
-	"github.com/joyrex2001/kubedock/internal/model/types"
+	"github.com/SymphonyOSF/kubedock/internal/model/types"
 )
 
 func TestGetLogs(t *testing.T) {

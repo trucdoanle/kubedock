@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/joyrex2001/kubedock/internal/util/tar"
+	"github.com/SymphonyOSF/kubedock/internal/util/tar"
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/resource"
 	"k8s.io/klog"
@@ -65,24 +65,24 @@ type Mount struct {
 
 const (
 	// LabelRequestCPU is the label to be used to specify cpu request/limits
-	LabelRequestCPU = "com.joyrex2001.kubedock.request-cpu"
+	LabelRequestCPU = "com.SymphonyOSF.kubedock.request-cpu"
 	// LabelRequestMemory is the label to use to specify memory request/limits
-	LabelRequestMemory = "com.joyrex2001.kubedock.request-memory"
+	LabelRequestMemory = "com.SymphonyOSF.kubedock.request-memory"
 	// LabelPullPolicy is the label to be used to configure the pull policy
-	LabelPullPolicy = "com.joyrex2001.kubedock.pull-policy"
+	LabelPullPolicy = "com.SymphonyOSF.kubedock.pull-policy"
 	// LabelServiceAccount is the label to be used to enforce a service account
 	// other than 'default' for the created pods.
-	LabelServiceAccount = "com.joyrex2001.kubedock.service-account"
+	LabelServiceAccount = "com.SymphonyOSF.kubedock.service-account"
 	// LabelNamePrefix is the label to be used to enforce a prefix for the names used
 	// for the container deployments.
-	LabelNamePrefix = "com.joyrex2001.kubedock.name-prefix"
+	LabelNamePrefix = "com.SymphonyOSF.kubedock.name-prefix"
 	// LabelRunasUser is the label to be used to enforce a specific user (uid) that
 	// runs inside the container can also be enforced w
-	LabelRunasUser = "com.joyrex2001.kubedock.runas-user"
+	LabelRunasUser = "com.SymphonyOSF.kubedock.runas-user"
 	// LabelNodeSelector is a comma-separated list of key-value pairs for node selection
-	LabelNodeSelector = "com.joyrex2001.kubedock.node-selector"
+	LabelNodeSelector = "com.SymphonyOSF.kubedock.node-selector"
 	// LabelActiveDeadlineSeconds is the label to be used to specify active deadline in seconds
-	LabelActiveDeadlineSeconds = "com.joyrex2001.kubedock.active-deadline-seconds"
+	LabelActiveDeadlineSeconds = "com.SymphonyOSF.kubedock.active-deadline-seconds"
 )
 
 // GetEnvVar will return the environment variables of the container

@@ -8,10 +8,10 @@ import (
 	"github.com/spf13/viper"
 	"k8s.io/klog"
 
-	"github.com/joyrex2001/kubedock/internal/backend"
-	"github.com/joyrex2001/kubedock/internal/server/httputil"
-	"github.com/joyrex2001/kubedock/internal/server/routes"
-	"github.com/joyrex2001/kubedock/internal/server/routes/common"
+	"github.com/SymphonyOSF/kubedock/internal/backend"
+	"github.com/SymphonyOSF/kubedock/internal/server/httputil"
+	"github.com/SymphonyOSF/kubedock/internal/server/routes"
+	"github.com/SymphonyOSF/kubedock/internal/server/routes/common"
 )
 
 // Server is the API server.

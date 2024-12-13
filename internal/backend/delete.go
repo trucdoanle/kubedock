@@ -9,7 +9,7 @@ import (
 	"k8s.io/apimachinery/pkg/watch"
 	"k8s.io/klog"
 
-	"github.com/joyrex2001/kubedock/internal/model/types"
+	"github.com/SymphonyOSF/kubedock/internal/model/types"
 )
 
 // DeleteAll will delete all resources that kubedock=true

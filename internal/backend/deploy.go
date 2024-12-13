@@ -17,12 +17,12 @@ import (
 	"k8s.io/apimachinery/pkg/watch"
 	"k8s.io/klog"
 
-	"github.com/joyrex2001/kubedock/internal/config"
-	"github.com/joyrex2001/kubedock/internal/model/types"
-	"github.com/joyrex2001/kubedock/internal/util/exec"
-	"github.com/joyrex2001/kubedock/internal/util/portforward"
-	"github.com/joyrex2001/kubedock/internal/util/reverseproxy"
-	"github.com/joyrex2001/kubedock/internal/util/tar"
+	"github.com/SymphonyOSF/kubedock/internal/config"
+	"github.com/SymphonyOSF/kubedock/internal/model/types"
+	"github.com/SymphonyOSF/kubedock/internal/util/exec"
+	"github.com/SymphonyOSF/kubedock/internal/util/portforward"
+	"github.com/SymphonyOSF/kubedock/internal/util/reverseproxy"
+	"github.com/SymphonyOSF/kubedock/internal/util/tar"
 )
 
 // DeployState describes the state of a deployment.

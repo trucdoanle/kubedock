@@ -5,7 +5,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/joyrex2001/kubedock/internal/util/md2text"
+	"github.com/SymphonyOSF/kubedock/internal/util/md2text"
 )
 
 var README string

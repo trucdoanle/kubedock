@@ -5,10 +5,10 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/joyrex2001/kubedock/internal/config"
-	"github.com/joyrex2001/kubedock/internal/server/httputil"
-	"github.com/joyrex2001/kubedock/internal/server/routes/common"
-	"github.com/joyrex2001/kubedock/internal/server/routes/libpod"
+	"github.com/SymphonyOSF/kubedock/internal/config"
+	"github.com/SymphonyOSF/kubedock/internal/server/httputil"
+	"github.com/SymphonyOSF/kubedock/internal/server/routes/common"
+	"github.com/SymphonyOSF/kubedock/internal/server/routes/libpod"
 )
 
 // LibpodHeadersMiddleware is a gin-gonic middleware that will add http headers

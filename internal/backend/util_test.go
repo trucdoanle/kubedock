@@ -3,7 +3,7 @@ package backend
 import (
 	"testing"
 
-	"github.com/joyrex2001/kubedock/internal/model/types"
+	"github.com/SymphonyOSF/kubedock/internal/model/types"
 )
 
 func TestToKubernetesValue(t *testing.T) {

@@ -3,7 +3,7 @@ package events
 import (
 	"testing"
 
-	"github.com/joyrex2001/kubedock/internal/server/filter"
+	"github.com/SymphonyOSF/kubedock/internal/server/filter"
 )
 
 func TestEvents(t *testing.T) {

@@ -7,8 +7,8 @@ import (
 	"github.com/spf13/viper"
 	"k8s.io/client-go/kubernetes/fake"
 
-	"github.com/joyrex2001/kubedock/internal/backend"
-	"github.com/joyrex2001/kubedock/internal/model/types"
+	"github.com/SymphonyOSF/kubedock/internal/backend"
+	"github.com/SymphonyOSF/kubedock/internal/model/types"
 )
 
 func TestCleanContainers(t *testing.T) {

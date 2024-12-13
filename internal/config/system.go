@@ -6,7 +6,7 @@ import (
 
 const (
 	// ID is the id as advertised when calling /info
-	ID = "com.joyrex2001.kubedock"
+	ID = "com.SymphonyOSF.kubedock"
 	// Name is the name as advertised when calling /info
 	Name = "kubedock"
 	// OS is the operating system as advertised when calling /info

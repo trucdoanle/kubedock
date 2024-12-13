@@ -4,7 +4,7 @@
 
 FROM docker.io/golang:1.22 AS kubedock
 
-ARG CODE=github.com/joyrex2001/kubedock
+ARG CODE=github.com/SymphonyOSF/kubedock
 
 ADD . /go/src/${CODE}/
 RUN cd /go/src/${CODE} \

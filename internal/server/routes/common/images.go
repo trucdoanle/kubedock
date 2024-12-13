@@ -6,9 +6,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/joyrex2001/kubedock/internal/config"
-	"github.com/joyrex2001/kubedock/internal/model/types"
-	"github.com/joyrex2001/kubedock/internal/server/httputil"
+	"github.com/SymphonyOSF/kubedock/internal/config"
+	"github.com/SymphonyOSF/kubedock/internal/model/types"
+	"github.com/SymphonyOSF/kubedock/internal/server/httputil"
 )
 
 // ImageList - list Images. Stubbed, not relevant on k8s.

@@ -17,11 +17,11 @@ import (
 	"k8s.io/client-go/tools/leaderelection/resourcelock"
 	"k8s.io/klog"
 
-	"github.com/joyrex2001/kubedock/internal/backend"
-	"github.com/joyrex2001/kubedock/internal/config"
-	"github.com/joyrex2001/kubedock/internal/reaper"
-	"github.com/joyrex2001/kubedock/internal/server"
-	"github.com/joyrex2001/kubedock/internal/util/myip"
+	"github.com/SymphonyOSF/kubedock/internal/backend"
+	"github.com/SymphonyOSF/kubedock/internal/config"
+	"github.com/SymphonyOSF/kubedock/internal/reaper"
+	"github.com/SymphonyOSF/kubedock/internal/server"
+	"github.com/SymphonyOSF/kubedock/internal/util/myip"
 )
 
 // Main is the main entry point for starting this service.

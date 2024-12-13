@@ -8,8 +8,8 @@ import (
 
 	memdb "github.com/hashicorp/go-memdb"
 
-	"github.com/joyrex2001/kubedock/internal/model/types"
-	"github.com/joyrex2001/kubedock/internal/util/stringid"
+	"github.com/SymphonyOSF/kubedock/internal/model/types"
+	"github.com/SymphonyOSF/kubedock/internal/util/stringid"
 )
 
 // Database is the object contains the in-memory database.

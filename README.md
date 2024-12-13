@@ -27,9 +27,9 @@ Container API calls are translated towards kubernetes pods. When a container is 
 
 Starting a container is a blocking call that will wait until it results in a running pod. By default it will wait for maximum 1 minute, but this is configurable with the `--timeout` argument. The logs API calls will always return the complete history of logs, and doesn't differentiate between stdout/stderr. All log output is send as stdout. Executions in the containers are supported.
 
-By default, all containers will be orchestrated using kubernetes pods. If a container has been given a specific name, this will be visible in the name of the pod. If the label `com.joyrex2001.kubedock.name-prefix` has been set, this will be added as a prefix to the name. This can also be set with the environment variable `POD_NAME_PREFIX` or with the `--pod-name-prefix` argument.
+By default, all containers will be orchestrated using kubernetes pods. If a container has been given a specific name, this will be visible in the name of the pod. If the label `com.SymphonyOSF.kubedock.name-prefix` has been set, this will be added as a prefix to the name. This can also be set with the environment variable `POD_NAME_PREFIX` or with the `--pod-name-prefix` argument.
 
-The containers will be started with the `default` service account. This can be changed with the `--service-account`. If required, the uid of the user that runs inside the container can also be enforced with the `--runas-user` argument and the `com.joyrex2001.kubedock.runas-user` label.
+The containers will be started with the `default` service account. This can be changed with the `--service-account`. If required, the uid of the user that runs inside the container can also be enforced with the `--runas-user` argument and the `com.SymphonyOSF.kubedock.runas-user` label.
 
 ## Volumes
 
@@ -45,7 +45,7 @@ Kubedock flattens all networking, which basically means that everything will run
 
 ## Images
 
-Kubedock implements the images API by tracking which images are requested. It is not able to actually build or import images. If kubedock is started with `--inspector`, kubedock will fetch configuration information about the image by calling external container registries. This configuration includes ports that are exposed by the container image itself, and increases network aliases support. The registries should be configured by the client (for example by doing a `skopeo login`). By default images that are used are deployed with a 'IfNotPresent' pull policy. This can be globally configured with the `--pull-policy` argument, and can be configured on container level by adding a label `com.joyrex2001.kubedock.pull-policy` to the container. Possible values are 'never', 'always' and 'ifnotpresent'.
+Kubedock implements the images API by tracking which images are requested. It is not able to actually build or import images. If kubedock is started with `--inspector`, kubedock will fetch configuration information about the image by calling external container registries. This configuration includes ports that are exposed by the container image itself, and increases network aliases support. The registries should be configured by the client (for example by doing a `skopeo login`). By default images that are used are deployed with a 'IfNotPresent' pull policy. This can be globally configured with the `--pull-policy` argument, and can be configured on container level by adding a label `com.SymphonyOSF.kubedock.pull-policy` to the container. Possible values are 'never', 'always' and 'ifnotpresent'.
 
 ## Namespace locking
 
@@ -53,15 +53,15 @@ If multiple kubedocks are using the namespace, it might be possible there will b
 
 ## Resource requests and limits
 
-By default containers are started without any resource request configuration. This can impact performance of the tests that are run in the containers. Setting resource requests (and limits) will allow better scheduling, and can improve the overall performance of the running containers. Global requests and limits can be set with `--request-cpu` and `--request-memory`, which takes regular kubernetes resource requests configurations as can be found in the [kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/). Limits are optional, and can be configured by adding it with a ,limit. If the values should be configured specifically for a container, they can be configured by adding `com.joyrex2001.kubedock.request-cpu` or `com.joyrex2001.kubedock.request-memory` labels to the container with their specific requests (and limits). The labels take precedence over the cli configuration.
+By default containers are started without any resource request configuration. This can impact performance of the tests that are run in the containers. Setting resource requests (and limits) will allow better scheduling, and can improve the overall performance of the running containers. Global requests and limits can be set with `--request-cpu` and `--request-memory`, which takes regular kubernetes resource requests configurations as can be found in the [kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/). Limits are optional, and can be configured by adding it with a ,limit. If the values should be configured specifically for a container, they can be configured by adding `com.SymphonyOSF.kubedock.request-cpu` or `com.SymphonyOSF.kubedock.request-memory` labels to the container with their specific requests (and limits). The labels take precedence over the cli configuration.
 
 ## Node Selector
 
-If you want to schedule the pods run by Kubedock to specific nodes, a node selector can be used. You can set the default value using `--node-selector`; pod-specifc values can be configured by adding `com.joyrex2001.kubedock.node-selector` label. Note that the format of the node selector is a comma-separated list of key-value pairs, e. g. `--node-selector=key1=value1[,key2=value2]`.
+If you want to schedule the pods run by Kubedock to specific nodes, a node selector can be used. You can set the default value using `--node-selector`; pod-specifc values can be configured by adding `com.SymphonyOSF.kubedock.node-selector` label. Note that the format of the node selector is a comma-separated list of key-value pairs, e. g. `--node-selector=key1=value1[,key2=value2]`.
 
 ## Active deadline seconds
 
-Sometimes you may want to specify an `activeDeadlineSeconds` for the pods run by Kubedock; this is useful in multi-tenant environments if you want the pods to use resources in the `terminating` quota (if `activeDeadlineSeconds` is not set, pods will use `notterminating` quota). You can set the default value using `--active-deadline-seconds`; pod-specific values can be configured by adding `com.joyrex2001.kubedock.active-deadline-seconds` label.
+Sometimes you may want to specify an `activeDeadlineSeconds` for the pods run by Kubedock; this is useful in multi-tenant environments if you want the pods to use resources in the `terminating` quota (if `activeDeadlineSeconds` is not set, pods will use `notterminating` quota). You can set the default value using `--active-deadline-seconds`; pod-specific values can be configured by adding `com.SymphonyOSF.kubedock.active-deadline-seconds` label.
 
 ## Pod template
 
@@ -121,5 +121,5 @@ rules:
 
 # See also
 
-* https://github.com/joyrex2001/kubedock
-* https://hub.docker.com/r/joyrex2001/kubedock
+* https://github.com/SymphonyOSF/kubedock
+* https://hub.docker.com/r/SymphonyOSF/kubedock

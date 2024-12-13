@@ -3,7 +3,7 @@ package cmd
 import (
 	"flag"
 
-	"github.com/joyrex2001/kubedock/internal/dind"
+	"github.com/SymphonyOSF/kubedock/internal/dind"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	"k8s.io/klog"

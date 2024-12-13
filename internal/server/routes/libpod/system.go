@@ -4,8 +4,8 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/joyrex2001/kubedock/internal/config"
-	"github.com/joyrex2001/kubedock/internal/server/routes/common"
+	"github.com/SymphonyOSF/kubedock/internal/config"
+	"github.com/SymphonyOSF/kubedock/internal/server/routes/common"
 )
 
 // Version - get version.

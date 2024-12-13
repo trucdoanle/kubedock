@@ -27,7 +27,7 @@ spec:
           mountPath: /var/run/
   sidecars:
     - name: kubedock
-      image: joyrex2001/kubedock:latest
+      image: SymphonyOSF/kubedock:latest
       args:
         - server
         - --reverse-proxy

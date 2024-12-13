@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/joyrex2001/kubedock/internal/util/myip"
+	"github.com/SymphonyOSF/kubedock/internal/util/myip"
 	"github.com/spf13/viper"
 )
 

@@ -8,9 +8,9 @@ import (
 
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	"github.com/joyrex2001/kubedock/internal/model/types"
-	"github.com/joyrex2001/kubedock/internal/util/exec"
-	"github.com/joyrex2001/kubedock/internal/util/ioproxy"
+	"github.com/SymphonyOSF/kubedock/internal/model/types"
+	"github.com/SymphonyOSF/kubedock/internal/util/exec"
+	"github.com/SymphonyOSF/kubedock/internal/util/ioproxy"
 )
 
 // ExecContainer will execute given exec object in kubernetes.

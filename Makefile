@@ -1,7 +1,7 @@
-LDFLAGS="-X github.com/joyrex2001/kubedock/internal/config.Date=`date -u +%Y%m%d-%H%M%S`  \
-		 -X github.com/joyrex2001/kubedock/internal/config.Build=`git rev-list -1 HEAD`   \
-		 -X github.com/joyrex2001/kubedock/internal/config.Version=`git describe --tags`  \
-		 -X github.com/joyrex2001/kubedock/internal/config.Image=joyrex2001/kubedock:`git describe --tags | cut -d- -f1`"
+LDFLAGS="-X github.com/SymphonyOSF/kubedock/internal/config.Date=`date -u +%Y%m%d-%H%M%S`  \
+		 -X github.com/SymphonyOSF/kubedock/internal/config.Build=`git rev-list -1 HEAD`   \
+		 -X github.com/SymphonyOSF/kubedock/internal/config.Version=`git describe --tags`  \
+		 -X github.com/SymphonyOSF/kubedock/internal/config.Image=SymphonyOSF/kubedock:`git describe --tags | cut -d- -f1`"
 
 run:
 	CGO_ENABLED=0 go run main.go server -P -v 2 --port-forward
@@ -14,7 +14,7 @@ gox:
 		-output="dist/kubedock_`git describe --tags`_{{.OS}}_{{.Arch}}" -ldflags $(LDFLAGS)
 
 docker:
-	docker build . -t joyrex2001/kubedock:latest
+	docker build . -t SymphonyOSF/kubedock:latest
 
 clean:
 	rm -f kubedock

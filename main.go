@@ -3,7 +3,7 @@ package main
 import (
 	_ "embed"
 
-	"github.com/joyrex2001/kubedock/cmd"
+	"github.com/SymphonyOSF/kubedock/cmd"
 )
 
 //go:embed README.md

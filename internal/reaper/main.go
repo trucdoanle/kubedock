@@ -6,8 +6,8 @@ import (
 
 	"k8s.io/klog"
 
-	"github.com/joyrex2001/kubedock/internal/backend"
-	"github.com/joyrex2001/kubedock/internal/model"
+	"github.com/SymphonyOSF/kubedock/internal/backend"
+	"github.com/SymphonyOSF/kubedock/internal/model"
 )
 
 // Reaper is the object handles reaping of resources.

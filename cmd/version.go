@@ -5,7 +5,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/joyrex2001/kubedock/internal/config"
+	"github.com/SymphonyOSF/kubedock/internal/config"
 )
 
 func init() {

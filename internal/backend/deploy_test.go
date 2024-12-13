@@ -13,7 +13,7 @@ import (
 	"k8s.io/apimachinery/pkg/util/intstr"
 	"k8s.io/client-go/kubernetes/fake"
 
-	"github.com/joyrex2001/kubedock/internal/model/types"
+	"github.com/SymphonyOSF/kubedock/internal/model/types"
 )
 
 var tarSingle = []byte{
@@ -318,7 +318,7 @@ func TestStartContainerAddsActiveDeadlineSeconds(t *testing.T) {
 				timeOut:     10,
 			},
 			in: &types.Container{ID: "rc752", ShortID: "tb303", Name: "f1spirit", Labels: map[string]string{
-				"com.joyrex2001.kubedock.active-deadline-seconds": "42",
+				"com.SymphonyOSF.kubedock.active-deadline-seconds": "42",
 			}},
 			ads: makeIntPointer(42),
 		},

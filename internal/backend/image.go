@@ -1,7 +1,7 @@
 package backend
 
 import (
-	"github.com/joyrex2001/kubedock/internal/util/image"
+	"github.com/SymphonyOSF/kubedock/internal/util/image"
 )
 
 // GetImageExposedPorts will inspect the image in the registry and return the

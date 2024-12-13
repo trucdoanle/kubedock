@@ -9,8 +9,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"k8s.io/klog"
 
-	"github.com/joyrex2001/kubedock/internal/backend"
-	"github.com/joyrex2001/kubedock/internal/server/httputil"
+	"github.com/SymphonyOSF/kubedock/internal/backend"
+	"github.com/SymphonyOSF/kubedock/internal/server/httputil"
 )
 
 // ContainerLogs - get container logs.

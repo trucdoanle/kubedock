@@ -3,9 +3,9 @@ package common
 import (
 	"golang.org/x/time/rate"
 
-	"github.com/joyrex2001/kubedock/internal/backend"
-	"github.com/joyrex2001/kubedock/internal/events"
-	"github.com/joyrex2001/kubedock/internal/model"
+	"github.com/SymphonyOSF/kubedock/internal/backend"
+	"github.com/SymphonyOSF/kubedock/internal/events"
+	"github.com/SymphonyOSF/kubedock/internal/model"
 )
 
 const (

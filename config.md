@@ -16,8 +16,8 @@ The `server` command is the actual kubedock server, and is the command to start 
 |server|--tls-key-file||SERVER_TLS_CERT_FILE|TLS keyfile|
 |server|--tls-cert-file||SERVER_TLS_CERT_FILE|TLS certificate file|
 |server|--namespace / -n|<current namespace>|NAMESPACE|Namespace in which containers should be orchestrated|
-|server|--initimage|joyrex2001/kubedock:version|INIT_IMAGE|Image to use as initcontainer for volume setup|
-|server|--dindimage|joyrex2001/kubedock:version|DIND_IMAGE|Image to use as sidecar container for docker-in-docker support|
+|server|--initimage|SymphonyOSF/kubedock:version|INIT_IMAGE|Image to use as initcontainer for volume setup|
+|server|--dindimage|SymphonyOSF/kubedock:version|DIND_IMAGE|Image to use as sidecar container for docker-in-docker support|
 |server|--disable-dind|false|DISABLE_DIND|Disable docker-in-docker support|
 |server|--pull-policy|ifnotpresent|PULL_POLICY|Pull policy that should be applied (ifnotpresent,never,always)|
 |server|--service-account|default|SERVICE_ACCOUNT|Service account that should be used for deployed pods|

@@ -23,7 +23,7 @@ services:
       - db
     image: wordpress:latest
     labels:
-      com.joyrex2001.kubedock.pull-policy: always
+      com.SymphonyOSF.kubedock.pull-policy: always
     volumes:
       - ./wordpress_data:/var/www/html
     ports:

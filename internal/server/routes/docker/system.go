@@ -7,9 +7,9 @@ import (
 	"github.com/gin-gonic/gin"
 	"k8s.io/klog"
 
-	"github.com/joyrex2001/kubedock/internal/config"
-	"github.com/joyrex2001/kubedock/internal/server/filter"
-	"github.com/joyrex2001/kubedock/internal/server/routes/common"
+	"github.com/SymphonyOSF/kubedock/internal/config"
+	"github.com/SymphonyOSF/kubedock/internal/server/filter"
+	"github.com/SymphonyOSF/kubedock/internal/server/routes/common"
 )
 
 // Info - get system information.
