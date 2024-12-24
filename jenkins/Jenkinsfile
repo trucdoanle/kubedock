@@ -46,11 +46,12 @@ node(POD_LABEL) {
       ]) {
         sh """
           export "GOPROXY=https://\${ARTIFACTORY_USER}:\${ARTIFACTORY_TOKEN}@repo.symphony.com/artifactory/api/go/go-virtual-mirror"
-          mv packaging/debian ./
-          echo 1.0 > debian/source/format
-          sed -i 's/golang-go/golang-1.23-go/g' debian/control
-          sed -i '/GOPROXY/d' debian/rules
-          go build -o kubedock
+          export "GOCACHE=/tmp/.cache"
+          export "CGO_ENABLED=0"
+          export "GO111MODULE=on"
+          which go
+          go version
+          /usr/local/bin/go build -o kubedock
         """
       
         def argMap = []

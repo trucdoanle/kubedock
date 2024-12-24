@@ -46,6 +46,8 @@ spec:
         name: "tmpdir"
       - mountPath: "/home/jenkins"
         name: "homedir"
+      - mountPath: "/gocache"
+        name: "gocache"
   - name: "kaniko"
     image: gcr.io/kaniko-project/executor:debug
     imagePullPolicy: Always
@@ -71,6 +73,29 @@ spec:
       mountPath: /tmp
     - mountPath: "/home/jenkins"
       name: "homedir"
+  - name: go
+    image: us-east4-docker.pkg.dev/sym-prod-mr-tools-01/jenkins-docker-us-east4/go:1.22.2
+    imagePullPolicy: IfNotPresent
+    securityContext:
+      seccompProfile:
+        type: RuntimeDefault
+      runAsUser: 1000
+      allowPrivilegeEscalation: false
+      readOnlyRootFilesystem: True
+      privileged: false
+    resources:
+      requests:
+        memory: 1Gi
+        cpu: 200m
+      limits:
+        memory: 2Gi
+    command: [sleep]
+    args: [99d]
+    volumeMounts:
+      - mountPath: "/tmp"
+        name: "tmpdir"
+      - mountPath: "/home/jenkins"
+        name: "homedir"
   restartPolicy: Never
   volumes:
   - emptyDir:
@@ -79,4 +104,7 @@ spec:
   - emptyDir:
       medium: ""
     name: "homedir"
+  - emptyDir:
+      medium: ""
+    name: "gocache"
   serviceAccountName: build-cicd
