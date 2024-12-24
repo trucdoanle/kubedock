@@ -61,3 +61,7 @@ node(POD_LABEL) {
   }
 }
 }
+
+def getDate() {
+  return sh(script: 'date +%Y%m%d', returnStdout: true).trim()
+}
