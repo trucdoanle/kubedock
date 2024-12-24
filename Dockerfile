@@ -1,27 +1,6 @@
-####################
-## Build kubedock ## ----------------------------------------------------------
-####################
+FROM us-east4-docker.pkg.dev/sym-prod-mr-tools-01/jenkins-docker-us-east4/ubuntu:noble.Production-146-8cc6c3f
 
-FROM docker.io/golang:1.22 AS kubedock
-
-ARG CODE=github.com/joyrex2001/kubedock
-
-ADD . /go/src/${CODE}/
-RUN cd /go/src/${CODE} \
-    && make test build \
-    && mkdir /app \
-    && cp kubedock /app
-
-#################
-## Final image ## ------------------------------------------------------------
-#################
-
-FROM alpine:3
-
-RUN apk add --no-cache ca-certificates \
-    && update-ca-certificates
-
-COPY --from=kubedock /app /usr/local/bin
+COPY kubedock /usr/local/bin
 
 ENTRYPOINT ["/usr/local/bin/kubedock"]
 CMD [ "server" ]
