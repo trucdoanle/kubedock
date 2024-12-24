@@ -46,31 +46,31 @@ spec:
         name: "tmpdir"
       - mountPath: "/home/jenkins"
         name: "homedir"
-    - name: "kaniko"
-      image: gcr.io/kaniko-project/executor:debug
-      imagePullPolicy: Always
-      securityContext:
-        seccompProfile:
-          type: RuntimeDefault
-        capabilities:
-          drop: [ALL]
-          add: [CHOWN, FOWNER, SETUID, SETGID, DAC_OVERRIDE]
-        allowPrivilegeEscalation: false
-        privileged: false
-      command:
-      - /busybox/cat
-      tty: true
-      resources:
-        requests:
-          memory: 8Gi
-          cpu: 200m
-        limits:
-          memory: 16Gi
-      volumeMounts:
-      - name: "tmpdir"
-        mountPath: /tmp
-      - mountPath: "/home/jenkins"
-        name: "homedir"
+  - name: "kaniko"
+    image: gcr.io/kaniko-project/executor:debug
+    imagePullPolicy: Always
+    securityContext:
+      seccompProfile:
+        type: RuntimeDefault
+      capabilities:
+        drop: [ALL]
+        add: [CHOWN, FOWNER, SETUID, SETGID, DAC_OVERRIDE]
+      allowPrivilegeEscalation: false
+      privileged: false
+    command:
+    - /busybox/cat
+    tty: true
+    resources:
+      requests:
+        memory: 8Gi
+        cpu: 200m
+      limits:
+        memory: 16Gi
+    volumeMounts:
+    - name: "tmpdir"
+      mountPath: /tmp
+    - mountPath: "/home/jenkins"
+      name: "homedir"
   restartPolicy: Never
   volumes:
   - emptyDir:
